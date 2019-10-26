@@ -1,6 +1,5 @@
-![](https://img.shields.io/badge/Language-Java-green)
-
 # 13water
+![](https://img.shields.io/badge/language-JAVA-green.svg)
 
 ## 运行环境
 操作系统：windows；JRE版本：1.7以上。
