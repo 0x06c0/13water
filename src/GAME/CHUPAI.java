@@ -588,7 +588,19 @@ public class CHUPAI {
 	{
 		String Bottom="\"";
 		for(int i=8;i>=0;i--)
-		{
+		{//先严格查找
+			if(shoupai[i]==1&&shoupai[i+1]==1&&shoupai[i+2]==1&&shoupai[i+3]==1&&shoupai[i+4]==1)
+			{
+				Bottom+=GetACard(i)+" ";
+				Bottom+=GetACard(i+1)+" ";
+				Bottom+=GetACard(i+2)+" ";
+				Bottom+=GetACard(i+3)+" ";
+				Bottom+=GetACard(i+4)+"\"";
+				return Bottom;
+			}
+		}
+		for(int i=8;i>=0;i--)
+		{//没找到，再无脑查找
 			if(shoupai[i]>0&&shoupai[i+1]>0&&shoupai[i+2]>0&&shoupai[i+3]>0&&shoupai[i+4]>0)
 			{
 				Bottom+=GetACard(i)+" ";
@@ -657,7 +669,7 @@ public class CHUPAI {
 	{
 		String Bottom="";
 		int link=Link_Double();
-		int p1=-1,p2=-1,p3=-1,p4=-1,p5=-1,count=0;
+		int p1=-1,p2=-1,p3=-1,p4=-1,count=0;
 		for(int i=12;i>=0;i--)//找对子，从大的开始
 		{
 			if(shoupai[i]==2)
@@ -671,8 +683,6 @@ public class CHUPAI {
 					p3=i;
 				else if(count==4)
 					p4=i;
-				else if(count==5)
-					p5=i;
 			}
 		}
 		if(count<2)//没找到两对
@@ -850,7 +860,7 @@ public class CHUPAI {
 	public String CardPlaying(String str) 
 	{
 		/**/
-		//String str="#7 &2 &K #5 $7 $10 *8 $J &9 *K &6 #J $K";
+		//String str="&Q *7 &K *9 &4 *Q *A &8 &A *3 *4 &6 *6";
 		System.out.println(str);
 		String Result ="";
 		String Top ="";

@@ -17,7 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class REGISTER {
-	JFrame jf = new JFrame("Ê≥®ÂÜå");
+	JFrame jf = new JFrame("◊¢≤·");
 	void Register() {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setSize(1134,639);
@@ -36,8 +36,8 @@ public class REGISTER {
 		jp4.setBounds(500, 535, 145, 74);
 		jp4.setOpaque(true);
 		jl.setBounds(0, 0, 1134, 638);
-		Icon icon = new ImageIcon("images/Ê≥®ÂÜå.jpg");
-		Icon denglu = new ImageIcon("icon/Ê≥®ÂÜåicon.png");
+		Icon icon = new ImageIcon("images/◊¢≤·.jpg");
+		Icon denglu = new ImageIcon("icon/◊¢≤·icon.png");
 		JButton jb = new JButton();
 		jb.setIcon(denglu);
 		jb.setBounds(0, 0, 145, 74);
@@ -57,19 +57,19 @@ public class REGISTER {
 	        	{
 	        		JSONObject jsonb = new JSONObject(post.Post("http://api.revth.com/register", value, 0, ""));
 	        		if(jsonb.getInt("status")!=0) {
-	        			JFrame Error = new JFrame("ÈîôËØØ");
+	        			JFrame Error = new JFrame("¥ÌŒÛ");
 	        			Error.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        			Error.setSize(225,130);
 	        			Error.setLocation(800, 440);
 	        			JPanel JP = new JPanel();
 	        			JP.setBounds(22, 22, 181, 108);
 	        			JP.setOpaque(true);
-	        			JTextField xinxi = new JTextField("Ê≥®ÂÜåÂ§±Ë¥•ÔºÅÔºÅÔºÅ ");
+	        			JTextField xinxi = new JTextField("◊¢≤· ß∞‹£°£°£° ");
 	        			xinxi.setBounds(22, 22, 181, 50);
 	        			xinxi.setEnabled(false);
 	        			Font x = new Font("Serif",0,20);
 	        			xinxi.setFont(x);
-	        			JButton quedin = new JButton("Á°ÆÂÆö");
+	        			JButton quedin = new JButton("»∑∂®");
 	        			quedin.setBounds(62, 84, 100, 34);
 	        			quedin.addActionListener(new ActionListener() {
 	        				public void actionPerformed(ActionEvent g) {
@@ -82,19 +82,19 @@ public class REGISTER {
 	        			Error.setVisible(true);
 	        		}
 	        		else {
-	        			JFrame Error = new JFrame("ÊàêÂäü");
+	        			JFrame Error = new JFrame("≥…π¶");
 	        			Error.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        			Error.setSize(225,130);
 	        			Error.setLocation(800, 440);
 	        			JPanel JP = new JPanel();
 	        			JP.setBounds(22, 22, 181, 108);
 	        			JP.setOpaque(true);
-	        			JTextField xinxi = new JTextField("Ê≥®ÂÜåÊàêÂäüÔºÅÔºÅÔºÅ");
+	        			JTextField xinxi = new JTextField("◊¢≤·≥…π¶£°£°£°");
 	        			xinxi.setBounds(22, 22, 181, 50);
 	        			xinxi.setEnabled(false);
 	        			Font x = new Font("Serif",0,20);
 	        			xinxi.setFont(x);
-	        			JButton quedin = new JButton("Á°ÆÂÆö");
+	        			JButton quedin = new JButton("»∑∂®");
 	        			quedin.setBounds(62, 84, 100, 34);
 	        			quedin.addActionListener(new ActionListener() {
 	        				public void actionPerformed(ActionEvent g) {

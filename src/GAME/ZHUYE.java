@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class ZHUYE {
-	JFrame jf = new JFrame("ä¸»é¡µ");
+	JFrame jf = new JFrame("Ö÷Ò³");
 	void Zhuye(String id, String tok,int user_id) {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setSize(1136,640);
@@ -38,11 +38,11 @@ public class ZHUYE {
 		jp6.setBounds(802, 445, 137, 72);
 		jp6.setOpaque(true);
 		jl.setBounds(0, 0, 1136, 640);
-		Icon icon = new ImageIcon("images/ä¸»é¡µ.jpg");
-		Icon kaishi = new ImageIcon("icon/å¼€å§‹æ¸¸æˆ.jpg");
-		Icon duiju = new ImageIcon("icon/å¯¹æˆ˜æƒ…å†µ.jpg");
-		Icon paihang = new ImageIcon("icon/æ’è¡Œæ¦œ.jpg");
-		Icon lishi = new ImageIcon("icon/å†å²æˆ˜å±€.jpg");
+		Icon icon = new ImageIcon("images/Ö÷Ò³.jpg");
+		Icon kaishi = new ImageIcon("icon/¿ªÊ¼ÓÎÏ·.jpg");
+		Icon duiju = new ImageIcon("icon/¶ÔÕ½Çé¿ö.jpg");
+		Icon paihang = new ImageIcon("icon/ÅÅĞĞ°ñ.jpg");
+		Icon lishi = new ImageIcon("icon/ÀúÊ·Õ½¾Ö.jpg");
 		jl.setIcon(icon);
 		JButton jb1 = new JButton();
 		JButton jb2 = new JButton();
