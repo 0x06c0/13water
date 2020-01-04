@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 public class BEIJIN {
 	int ok = 0;
-	JFrame jf = new JFrame("èƒŒæ™¯");
+	JFrame jf = new JFrame("±³¾°");
 	void LoginOrRegister() {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setSize(1135,638);
@@ -28,9 +28,9 @@ public class BEIJIN {
 		jp3.setBounds(675, 427, 152, 74);
 		jp3.setOpaque(true);
 		jl.setBounds(0, 0, 1135, 638);
-		Icon icon = new ImageIcon("images/èƒŒæ™¯.jpg");
-		Icon denglu = new ImageIcon("icon/ç™»å½•icon.png");
-		Icon zhuce = new ImageIcon("icon/æ³¨å†Œicon.png");
+		Icon icon = new ImageIcon("images/±³¾°.jpg");
+		Icon denglu = new ImageIcon("icon/µÇÂ¼icon.png");
+		Icon zhuce = new ImageIcon("icon/×¢²áicon.png");
 		jl.setIcon(icon);
 		JButton jb1 = new JButton();
 		JButton jb2 = new JButton();

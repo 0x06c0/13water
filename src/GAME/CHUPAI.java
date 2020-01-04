@@ -1,17 +1,27 @@
 package GAME;
+
+//import java.util.Arrays;
+
 public class CHUPAI {
 	static int[] fangkuai = new int[15];
 	static int[] meihua = new int[15];
 	static int[] hongtao = new int[15];
 	static int[] heitao = new int[15];
 	static int[] shoupai = new int[13];
-	public static void Trans(String AllCard)//ç»Ÿè®¡æ‰‹ç‰Œ
+	public static void Trans(String str)//Í³¼ÆÊÖÅÆ
 	{
-		for(int i = 0; i < 26; i += 2)//ç»Ÿè®¡æ‰‹ç‰Œ
+		String AllCard = str.replace(" ", "");//È¥³ıÈ«²¿¿Õ¸ñ
+		//AllCard = str.replace("\"", "");//È¥³ıÈ«²¿ÒıºÅ
+		AllCard = AllCard.replace("10", ":");//½«10Ìæ»»³É:
+		AllCard = AllCard.replace("J", ";");//½«JÌæ»»³É;
+		AllCard = AllCard.replace("Q", "<");//½«QÌæ»»³É<
+		AllCard = AllCard.replace("K", "=");//½«KÌæ»»³É=
+		AllCard = AllCard.replace("A", ">");//½«AÌæ»»³É>
+		for(int i = 0; i < AllCard.length(); i += 2)//Í³¼ÆÊÖÅÆ
 		{
 			String Tmp = AllCard.substring(i, i+2);
-			//Tmp.charAt(0)æ˜¯èŠ±è‰²
-			//Tmp.charAt(1)æ˜¯æ•°å­—
+			//Tmp.charAt(0)ÊÇ»¨É«
+			//Tmp.charAt(1)ÊÇÊı×Ö
 			if(Tmp.charAt(0) == '#')
 			{
 				fangkuai[Tmp.charAt(1)-50]+=1;
@@ -39,88 +49,297 @@ public class CHUPAI {
 		hongtao[14]=3;
 		heitao[14]=4;
 	}
-	public static String GetACard(int i)//å–å‡ºä¸€å¼ ç‰ŒåŠå…¶å¯¹åº”èŠ±è‰²ï¼Œæœ«å°¾ä¸å¸¦ç©ºæ ¼
+	public static String GetACard(int i)//È¡³öÒ»ÕÅÅÆ¼°Æä¶ÔÓ¦»¨É«£¬Ä©Î²²»´ø¿Õ¸ñ
 	{
 		String str="";
 		if(fangkuai[i]==1)
 		{
-			fangkuai[i]=0;
-			fangkuai[13]-=1;
-			shoupai[i]-=1;
-			str+="#"+(char)(i+50);
+				fangkuai[i]=0;
+				fangkuai[13]-=1;
+				shoupai[i]-=1;
+				str+="#"+(char)(i+50);
 		}
 		else if(meihua[i]==1)
 		{
-			meihua[i]=0;
-			meihua[13]-=1;
-			shoupai[i]-=1;
-			str+="*"+(char)(i+50);
+				meihua[i]=0;
+				meihua[13]-=1;
+				shoupai[i]-=1;
+				str+="*"+(char)(i+50);
 		}
 		else if(hongtao[i]==1)
 		{
-			hongtao[i]=0;
-			hongtao[13]-=1;
-			shoupai[i]-=1;
-			str+="&"+(char)(i+50);
+				hongtao[i]=0;
+				hongtao[13]-=1;
+				shoupai[i]-=1;
+				str+="&"+(char)(i+50);
 		}
 		else if(heitao[i]==1)
 		{
-			heitao[i]=0;
-			heitao[13]-=1;
-			shoupai[i]-=1;
-			str+="$"+(char)(i+50);
+				heitao[i]=0;
+				heitao[13]-=1;
+				shoupai[i]-=1;
+				str+="$"+(char)(i+50);
 		}
 		return str;
 	}
-	public static String GetAPair(int j)//å–å‡ºä¸€å¯¹ï¼Œæœ«å°¾ä¸å¸¦ç©ºæ ¼
+	public static String GetAPair(int j)//È¡³öÒ»¶Ô£¬Ä©Î²²»´ø¿Õ¸ñ
 	{
 		String Bottom="";
 		int count=0;
 		if(fangkuai[j]==1)
 		{
-			fangkuai[j]=0;
-			fangkuai[13]-=1;
-			Bottom+="#"+(char)(j+50)+" ";
-			count++;
+				fangkuai[j]=0;
+				fangkuai[13]-=1;
+				Bottom+="#"+(char)(j+50)+" ";
+				count++;
 		}
 		if(meihua[j]==1)
 		{
-			meihua[j]=0;
-			meihua[13]-=1;
-			Bottom+="*"+(char)(j+50);
-			if(count<1)
-				Bottom+=" ";
-			else
-			{
-				shoupai[j]-=2;
-				return Bottom;
-			}
-			count++;
+				meihua[j]=0;
+				meihua[13]-=1;
+				Bottom+="*"+(char)(j+50);
+				if(count<1)
+					Bottom+=" ";
+				else
+				{
+					shoupai[j]-=2;
+					return Bottom;
+				}
+				count++;
 		}
 		if(hongtao[j]==1)
 		{
-			hongtao[j]=0;
-			hongtao[13]-=1;
-			Bottom+="&"+(char)(j+50);
-			if(count<1)
-				Bottom+=" ";
-			else
-			{
-				shoupai[j]-=2;
-				return Bottom;
-			}
-			count++;
+				hongtao[j]=0;
+				hongtao[13]-=1;
+				Bottom+="&"+(char)(j+50);
+				if(count<1)
+					Bottom+=" ";
+				else
+				{
+					shoupai[j]-=2;
+					return Bottom;
+				}
+				count++;
 		}
 		if(heitao[j]==1)
 		{
-			heitao[j]=0;
-			heitao[13]-=1;
-			Bottom+="$"+(char)(j+50);
+				heitao[j]=0;
+				heitao[13]-=1;
+				Bottom+="$"+(char)(j+50);
+				if(count<1)
+					Bottom+=" ";
+				else
+				{
+					shoupai[j]-=2;
+					return Bottom;
+				}
+				count++;				
 		}
-		shoupai[j]-=2;//æ‰£é™¤ç›¸åº”ç‰Œ
+		return "NULL";
+	}
+	public static String GetTwoPairs(int p1,int p2)//È¡Á½¶Ô£¬p2ÊÇ½ÏĞ¡Õß
+	{
+		String Bottom="\"";
+		Bottom+=GetAPair(p2)+" ";
+		Bottom+=GetAPair(p1);
+		int i;
+		for(i=0;i<=12;i++)//ÕÒµ½Á½¶Ôºó£¬ÕÒ1ÕÅµ¥ÅÆ
+		{
+			if(shoupai[i]==1)
+			{
+				if(p1<i)//½Ï´óµÄ¶Ô×ÓÅÆÃæ±Èµ¥ÅÆÅÆÃæĞ¡£¬µ¥ÅÆ¼ÓºóÃæ
+				Bottom+=" "+GetACard(i)+"\"";
+				else if(p2>i)//½ÏĞ¡µÄ¶Ô×ÓÅÆÃæ±Èµ¥ÅÆÅÆÃæ´ó£¬µ¥ÅÆ¼ÓÇ°Ãæ
+				{
+					StringBuffer Str=new StringBuffer(Bottom);
+					Str.insert(1,GetACard(i)+" " );
+					Bottom=Str.toString()+"\"";
+				}
+				else
+				{
+					StringBuffer Str=new StringBuffer(Bottom);
+					Str.insert(7,GetACard(i)+" " );
+					Bottom=Str.toString()+"\"";
+				}
+				break;
+			}
+		}
+		if(i==13)//Ã»ÕÒµ½µ¥ÅÆ
+		{
+			for(i=0;i<=12;i++)//²ğ¶Ô×Ó
+			{
+				if(shoupai[i]>0)
+				{
+					if(p1<i)//½Ï´óµÄ¶Ô×ÓÅÆÃæ±Èµ¥ÅÆÅÆÃæĞ¡£¬µ¥ÅÆ¼ÓºóÃæ
+					Bottom+=" "+GetACard(i)+"\"";
+					else if(p2>i)//½ÏĞ¡µÄ¶Ô×ÓÅÆÃæ±Èµ¥ÅÆÅÆÃæ´ó£¬µ¥ÅÆ¼ÓÇ°Ãæ
+					{
+						StringBuffer Str=new StringBuffer(Bottom);
+						Str.insert(1,GetACard(i)+" " );
+						Bottom=Str.toString()+"\"";
+					}
+					else
+					{
+						StringBuffer Str=new StringBuffer(Bottom);
+						Str.insert(7,GetACard(i)+" " );
+						Bottom=Str.toString()+"\"";
+					}
+					break;
+				}
+			}
+		}
 		return Bottom;
 	}
-	public static String GetATri(int i)//å–å‡ºä¸‰æ¡ï¼Œæœ«å°¾ä¸å¸¦ç©ºæ ¼
+	public static String Get_Gourd_Pair(int tri,int j)//È¡³öºùÂ«µÄÒ»¶Ô£¬Ä©Î²²»´ø¿Õ¸ñ
+	{
+		String Bottom="";
+		int count=0,fk=0,mh=0,ht=0,heit=0,max=-1,max2=-1,str_exist=0,str_destroy=-1,th_exist=0;
+		if(shoupai[j]==2)
+		{
+			for(int i=0;i<13;i++)//ÅĞ¶ÏÔ­±¾ÓĞÃ»ÓĞË³×Ó
+			{
+				if(shoupai[i]>0)
+				{
+					count++;
+					if(max2<count)
+						max2=count;
+				}
+				else
+					count=0;
+			}
+			if(max2>=5)//Ô­±¾ÓĞË³×Ó
+				str_exist=1;
+			count=0;
+			for(int i=0;i<13;i++)//ÅĞ¶ÏÓĞÃ»ÓĞÆäËûË³×Ó
+			{
+				if(shoupai[i]>0)
+				{
+					if(i!=tri&&i!=j)
+					{
+						count++;
+						if(max<count)
+							max=count;
+					}
+					else
+						count=0;
+				}
+				else
+					count=0;
+			}
+			if(max>=5)//ÓĞÆäËûË³×Ó£¬¿ÉÒÔÄÃ³öÀ´
+				str_destroy=0;
+			else
+				str_destroy=1;
+		}
+		//ÅĞ¶ÏÊÇ·ñ´æÔÚÆäËûÍ¬»¨
+		count=0;
+		if((fangkuai[tri]==0&&fangkuai[13]>4)||(fangkuai[tri]==1&&fangkuai[13]>5))
+			th_exist=1;
+		else if((meihua[tri]==0&&meihua[13]>4)||(meihua[tri]==1&&meihua[13]>5))
+			th_exist=1;
+		else if((hongtao[tri]==0&&hongtao[13]>4)||(hongtao[tri]==1&&hongtao[13]>5))
+			th_exist=1;
+		else if((heitao[tri]==0&&heitao[13]>4)||(heitao[tri]==1&&heitao[13]>5))
+			th_exist=1;
+		if(th_exist==1)//´æÔÚÆäËûÍ¬»¨
+		{
+			if(fangkuai[j]==1)
+			{
+				if((fangkuai[tri]==0&&fangkuai[13]!=5)||(fangkuai[tri]==1&&fangkuai[13]!=6))
+				{
+					fangkuai[j]=0;
+					fangkuai[13]-=1;
+					Bottom+="#"+(char)(j+50)+" ";
+					fk=1;
+					count++;
+				}
+			}
+			if(meihua[j]==1)
+			{
+				if((meihua[tri]==0&&meihua[13]!=5)||(meihua[tri]==1&&meihua[13]!=6))
+				{
+					meihua[j]=0;
+					meihua[13]-=1;
+					Bottom+="*"+(char)(j+50);
+					mh=1;
+					if(count<1)
+						Bottom+=" ";
+					else
+					{
+						shoupai[j]-=2;
+						return Bottom;
+					}
+					count++;
+				}
+			}
+			if(hongtao[j]==1)
+			{
+				if((hongtao[tri]==0&&hongtao[13]!=5)||(hongtao[tri]==1&&hongtao[13]!=6))
+				{
+					hongtao[j]=0;
+					hongtao[13]-=1;
+					Bottom+="&"+(char)(j+50);
+					ht=1;
+					if(count<1)
+						Bottom+=" ";
+					else
+					{
+						shoupai[j]-=2;
+						return Bottom;
+					}
+					count++;
+				}
+			}
+			if(heitao[j]==1)
+			{
+				if((heitao[tri]==0&&heitao[13]!=5)||(heitao[tri]==1&&heitao[13]!=6))
+				{
+					heitao[j]=0;
+					heitao[13]-=1;
+					Bottom+="$"+(char)(j+50);
+					heit=1;
+					if(count<1)
+						Bottom+=" ";
+					else
+					{
+						shoupai[j]-=2;
+						return Bottom;
+					}
+					count++;
+				}
+			}
+			//Ã»ÆÆ»µÍ¬»¨Ê±£¬»áÔÚÉÏÃæ½áÊø
+			if(count==1)//Ö»ÕÒµ½µ¥ÕÅ£¬ĞèÒª»¹Ô­»ØÈ¥(ÆÆ»µÁËÍ¬»¨) 	  //1.shoupai[j]=2,µ¥´¿µÄ¶Ô×Ó,ÆäÖĞÒ»ÕÅÆÆ»µÁËÍ¬»¨
+																  //2.shoupai[j]=3,ÆÆ»µÁËÁ½¸öÍ¬»¨£¨²»¿ÉÄÜ£©
+			{
+				if(fk==1)
+				{
+					fangkuai[j]=1;
+					fangkuai[13]+=1;
+				}
+				else if(mh==1)//Ö»ĞèÒª»¹Ô­Ò»ÕÅ£¬¹Ê¿ÉÒÔ¼ÓÉÏelseÀ´¼Ó¿ìËÙ¶È
+				{
+					meihua[j]=1;
+					meihua[13]+=1;
+				}
+				else if(ht==1)
+				{
+					hongtao[j]=1;
+					hongtao[13]+=1;
+				}
+				else if(heit==1)
+				{
+					heitao[j]=1;
+					heitao[13]+=1;
+				}
+			}
+		}
+		//Ã»ÓĞÆäËûÍ¬»¨£¬»òÕßÈ¡³öÊ±Í¬»¨±»ÆÆ»µ
+			if((th_exist==0&&str_exist==0)||str_destroy==0)//Ë³×ÓÃ»±»ÆÆ»µ£¬»òÕß²»´æÔÚË³×ÓºÍÍ¬»¨
+				return GetAPair(j);
+		return "NULL";
+	}
+	public static String GetATri(int i)//È¡³öÈıÌõ£¬Ä©Î²²»´ø¿Õ¸ñ
 	{
 		String Bottom="";
 		int count=0;
@@ -153,10 +372,10 @@ public class CHUPAI {
 			heitao[13]-=1;
 			Bottom+="$"+(char)(i+50);
 		}
-		shoupai[i]-=3;//æ‰£é™¤ç›¸åº”ç‰Œ
+		shoupai[i]-=3;//¿Û³ıÏàÓ¦ÅÆ
 		return Bottom;
 	}
-	public static int Link_Double()//åˆ¤æ–­è¿å¯¹ï¼Œè¿”å›è¾ƒå°å¯¹å­çš„ä¸‹æ ‡ï¼Œæ²¡æœ‰åˆ™è¿”å›-1
+	public static int Link_Double()//ÅĞ¶ÏÁ¬¶Ô£¬·µ»Ø½ÏĞ¡¶Ô×ÓµÄÏÂ±ê£¬Ã»ÓĞÔò·µ»Ø-1
 	{
 		for(int i=12;i>=1;i--)
 		{
@@ -165,7 +384,7 @@ public class CHUPAI {
 		}
 		return -1;
 	}
-	public static int Trible()//åˆ¤æ–­æ˜¯å¦æœ‰ä¸‰å¼ ç›¸åŒã€‚è‹¥æœ‰ï¼Œè¿”å›æœ€å¤§çš„ä¸‹æ ‡ã€‚æ²¡æœ‰è¿”å›-1
+	public static int Trible()//ÅĞ¶ÏÊÇ·ñÓĞÈıÕÅÏàÍ¬¡£ÈôÓĞ£¬·µ»Ø×î´óµÄÏÂ±ê¡£Ã»ÓĞ·µ»Ø-1
 	{
 		int i;
 		for(i=12;i>=0;i--)
@@ -175,7 +394,7 @@ public class CHUPAI {
 		}
 		return i;
 	}
-	public static String THS(int[] arr,String huase)//å•ä¸ªèŠ±è‰²åŒèŠ±é¡ºçš„åˆ¤æ–­ï¼Œæœ‰åˆ™å–å‡ºæœ€å¤§çš„ï¼Œæ²¡æœ‰è¿”å›â€œNULLâ€
+	public static String THS(int[] arr,String huase)//µ¥¸ö»¨É«Í¬»¨Ë³µÄÅĞ¶Ï£¬ÓĞÔòÈ¡³ö×î´óµÄ£¬Ã»ÓĞ·µ»Ø¡°NULL¡±
 	{
 		String str="";
 		for(int i=8;i>=0;i--)
@@ -200,37 +419,76 @@ public class CHUPAI {
 		}
 		return "NULL";
 	}
-	public static String TH(int[] arr,String huase)//å–å‡ºå•èŠ±è‰²ä¸­æœ€å¤§çš„åŒèŠ±ï¼Œå¹¶è¿”å›
+	public static String TH(int[] arr,String huase,String dun)//È¡³öµ¥»¨É«ÖĞ×î´óµÄÍ¬»¨£¬²¢·µ»Ø
 	{
-		String str="\"";
-		int count=0,CouNT=arr[13];
-		//System.out.println(CouNT);
-		for(int i=0;i<13;i++)
+		StringBuffer str=new StringBuffer();
+		str.insert(0, "\"");
+		int count=0,CouNT=arr[13],divide_pair=0,c1=-1,c2=-1,c3=-1,c4=-1,c5=-1;
+		for(int i=12;i>=0;i--)
 		{
 			if(arr[i]>0)
 			{
-				if(CouNT-5>0)
+				if(CouNT-5>0&&shoupai[i]>1)//ÈÆ¹ı¶Ô×Ó,´Ó´óµÄ¶Ô×Ó¿ªÊ¼ÈÆ
 					CouNT--;
 				else
 				{
-					arr[i]-=1;
-					arr[13]-=1;
-					shoupai[i]-=1;
-					str+=huase+(char)(i+50);
-					if(count<4)
-						str+=" ";
+					if(shoupai[i]==2)
+					{
+						divide_pair++;
+						if(divide_pair==2)//²ğÁËÁ½¸ö¶Ô×Ó
+						{
+							if(fangkuai[14]!=arr[14]&&fangkuai[13]>4);//ÓĞÆäËûµÄÍ¬»¨
+							else if(meihua[14]!=arr[14]&&meihua[13]>4);
+							else if(hongtao[14]!=arr[14]&&hongtao[13]>4);
+							else if(heitao[14]!=arr[14]&&heitao[13]>4);
+							if(dun=="Bottom")//µ×¶Õ
+							{
+								if(fangkuai[14]==arr[14]&&fangkuai[13]>9);//×ÔÉíÓĞ10ÕÅÍ¬»¨¼°ÒÔÉÏ
+								else if(meihua[14]==arr[14]&&meihua[13]>9);
+								else if(hongtao[14]==arr[14]&&hongtao[13]>9);
+								else if(heitao[14]==arr[14]&&heitao[13]>9);
+								else//¶¼Ã»ÓĞ 
+									break;
+							}
+							else//ÖĞ¶Õ
+							{
+								if(fangkuai[14]==arr[14]&&fangkuai[13]>4);//×ÔÉíÓĞ5ÕÅÍ¬»¨¼°ÒÔÉÏ
+								else if(meihua[14]==arr[14]&&meihua[13]>4);
+								else if(hongtao[14]==arr[14]&&hongtao[13]>4);
+								else if(heitao[14]==arr[14]&&heitao[13]>4);
+								else//¶¼Ã´ÓĞ
+									break;
+							}
+						}
+					}
+					str.insert(0, huase+(char)(i+50));
+					count++;
+					if(count==1) c1=i;
+					else if(count==2) c2=i;
+					else if(count==3) c3=i;
+					else if(count==4) c4=i;
+					else if(count==5) c5=i;
+					if(count<5)
+						str.insert(0, " ");
 					else
 					{
-						str+="\"";
-						break;
+						arr[c1]=arr[c2]=arr[c3]=arr[c4]=arr[c5]=0;
+						arr[13]-=5;
+						shoupai[c1]-=1;
+						shoupai[c2]-=1;
+						shoupai[c3]-=1;
+						shoupai[c4]-=1;
+						shoupai[c5]-=1;
+						str.insert(0, "\"");
+						String Str=str.toString();
+						return Str;
 					}
-					count++;
 				}
 			}
 		}
-		return str;
+		return "NULL";
 	}
-	public static String Judge_THS()//åˆ¤æ–­æ•´ä¸ªæ‰‹ç‰Œä¸­æœ‰æ²¡æœ‰åŒèŠ±é¡º,æœ‰åˆ™å–å‡ºï¼Œæ²¡æœ‰è¿”å›â€œNULLâ€
+	public static String Judge_THS()//ÅĞ¶ÏÕû¸öÊÖÅÆÖĞÓĞÃ»ÓĞÍ¬»¨Ë³,ÓĞÔòÈ¡³ö£¬Ã»ÓĞ·µ»Ø¡°NULL¡±
 	{
 		String Bottom;
 		if((Bottom=THS(fangkuai,"#"))=="NULL")
@@ -248,13 +506,13 @@ public class CHUPAI {
 		}
 		return Bottom;
 	}
-	public static String Judge_Bomb()//åˆ¤æ–­æ•´ä¸ªæ‰‹ç‰Œä¸­æœ‰æ²¡æœ‰ç‚¸å¼¹ï¼ˆå››å¼ ç›¸åŒï¼Œä½†æ²¡åŒ¹é…å‰©ä¸‹çš„å•ç‰Œï¼‰ï¼Œæœ«å°¾ä¸å¸¦ç©ºæ ¼ï¼Œæœ‰åˆ™å–å‡ºï¼Œæ²¡æœ‰è¿”å›â€œNULLâ€
+	public static String Judge_Bomb()//ÅĞ¶ÏÕû¸öÊÖÅÆÖĞÓĞÃ»ÓĞÕ¨µ¯£¨ËÄÕÅÏàÍ¬£¬µ«Ã»Æ¥ÅäÊ£ÏÂµÄµ¥ÅÆ£©£¬Ä©Î²²»´ø¿Õ¸ñ£¬ÓĞÔòÈ¡³ö£¬Ã»ÓĞ·µ»Ø¡°NULL¡±
 	{
 		String Bottom="";
 		int i;
-		for(i=12;i>=0;i--)//ä»å¤§ç‰Œå¼€å§‹æ‰¾
+		for(i=12;i>=0;i--)//´Ó´óÅÆ¿ªÊ¼ÕÒ
 		{
-			if(shoupai[i]==4)//æ‰¾åˆ°å››å¼ ç›¸åŒç‰Œ,åªæ‰¾ä¸€æ¬¡
+			if(shoupai[i]==4)//ÕÒµ½ËÄÕÅÏàÍ¬ÅÆ,Ö»ÕÒÒ»´Î
 			{
 				Bottom+="\"#"+(char)(i+50)+" *"+(char)(i+50)+" &"+
 						(char)(i+50)+" $"+(char)(i+50);
@@ -263,76 +521,156 @@ public class CHUPAI {
 				meihua[13]-=1;
 				hongtao[13]-=1;
 				heitao[13]-=1;
-				shoupai[i]-=4;//æ‰£é™¤ç›¸åº”ç‰Œ
+				shoupai[i]-=4;//¿Û³ıÏàÓ¦ÅÆ
 				return Bottom;
 			}
 		}
 		return "NULL";
 	}
-	public static String Judge_Gourd()//åˆ¤æ–­æ•´ä¸ªæ‰‹ç‰Œä¸­æœ‰æ²¡æœ‰è‘«èŠ¦ï¼Œæœ‰åˆ™å–å‡ºï¼Œæ²¡æœ‰è¿”å›â€œNULLâ€
+	public static String Judge_Gourd(String dun)//ÅĞ¶ÏÕû¸öÊÖÅÆÖĞÓĞÃ»ÓĞºùÂ«£¬ÓĞÔòÈ¡³ö£¬Ã»ÓĞ·µ»Ø¡°NULL¡±
 	{
-		String Bottom="";
+		String Bottom="",Pair="";
 		int trible=Trible();
-		int link=Link_Double();
-		//System.out.println(Arrays.toString(shoupai));
-		if(trible!=-1)//æœ‰ä¸‰å¼ ç›¸åŒ
+		int link=Link_Double(),pair=0,tri=0;
+		if(trible!=-1)//ÓĞÈıÕÅÏàÍ¬
 		{
-			if(link==-1)//æ²¡æœ‰è¿å¯¹
+			if(dun=="Bottom")//ÊÇµ×¶Õ
 			{
-				for(int j=0;j<=12;j++)//ç›´æ¥æ‰¾å‰©ä¸‹çš„æœ€å°çš„å¯¹å­ï¼Œè‹¥æ²¡èƒ½è¿”å›ï¼Œè¯´æ˜æ²¡æœ‰èƒ½å‡‘æˆè‘«èŠ¦çš„ç‰Œ
+				for(int i=0;i<=12;i++)
 				{
-					if(shoupai[j]==2)//æ‰¾åˆ°å¯ä»¥å‡‘æˆè‘«èŠ¦çš„ç‰Œ
-					{
-						if(j>trible)//å¯¹å­ç‰Œé¢æ¯”ä¸‰æ¡ç‰Œé¢å¤§
-						Bottom+="\""+GetATri(trible)+" "+GetAPair(j)+"\"";
-						else//å¯¹å­ç‰Œé¢æ¯”ä¸‰æ¡ç‰Œé¢å°
-						Bottom+="\""+GetAPair(j)+" "+GetATri(trible)+"\"";
-						//System.out.println(Arrays.toString(shoupai));
-						return Bottom;
-					}
+					if(shoupai[i]==2)//ÅĞ¶Ï»¹Ê£ÏÂ¶àÉÙ¶Ô
+						pair++;
+					else if(shoupai[i]==3&&i!=trible)//ÅĞ¶Ï³ıÁË×Ô¼ºÒÔÍâ»¹ÓĞÃ»ÓĞÈıÌõ
+						tri++;
 				}
-				for(int j=0;j<=12;j++)//ç›´æ¥æ‰¾å‰©ä¸‹çš„æœ€å°çš„å¯¹å­ï¼Œè‹¥æ²¡èƒ½è¿”å›ï¼Œè¯´æ˜æ²¡æœ‰èƒ½å‡‘æˆè‘«èŠ¦çš„ç‰Œ
-				{
-					if(shoupai[j]>2&&j!=trible)//æ‰¾åˆ°å¯ä»¥å‡‘æˆè‘«èŠ¦çš„ç‰Œ
+				if(tri<1&&pair<3)
+				{//ÅĞ¶ÏÓĞÃ»ÓĞÆäËûË³×Ó¡¢Í¬»¨
+					if(fangkuai[trible]>0&&fangkuai[13]>5);
+					else if(meihua[trible]>0&&meihua[13]>5);
+					else if(hongtao[trible]>0&&hongtao[13]>5);
+					else if(heitao[trible]>0&&heitao[13]>5);
+					else if(meihua[trible]==0&&meihua[13]>5);
+					else if(hongtao[trible]==0&&hongtao[13]>5);
+					else if(heitao[trible]==0&&heitao[13]>5);
+					else if(fangkuai[trible]==0&&fangkuai[13]>5);
+					else//Ã»ÓĞÆäËûÍ¬»¨,ÕÒÆäËûË³×Ó
 					{
-						if(j>trible)//å¯¹å­ç‰Œé¢æ¯”ä¸‰æ¡ç‰Œé¢å¤§
-						Bottom+="\""+GetATri(trible)+" "+GetAPair(j)+"\"";
-						else//å¯¹å­ç‰Œé¢æ¯”ä¸‰æ¡ç‰Œé¢å°
-						Bottom+="\""+GetAPair(j)+" "+GetATri(trible)+"\"";
-						//System.out.println(Arrays.toString(shoupai));
-						return Bottom;
+						int i;
+						for(i=0;i<8;i++)
+						{
+							if(shoupai[i]>0&&shoupai[i+1]>0&&shoupai[i+2]>0&&shoupai[i+3]>0&&shoupai[i+4]>0)
+							{
+								if(i<=trible&&i+4>=trible)
+									continue;
+								else//ÕÒµ½ÆäËûË³×Ó
+									break;
+							}
+						}
+						if(i==9)//Ã»ÕÒµ½
+							return "NULL";
 					}
 				}
 			}
-			else//æœ‰è¿å¯¹
+			else//ÊÇÖĞ¶Õ
 			{
-				for(int j=0;j<=12;j++)//å¼€å§‹æ‰¾å‰©ä¸‹çš„æœ€å°çš„å¯¹å­,è‹¥æ²¡èƒ½è¿”å›ï¼Œè¯´æ˜åªæœ‰è¿å¯¹ï¼Œæ²¡æœ‰å…¶ä»–å¯¹å­
+				int p=0;
+				for(int i=0;i<=12;i++)
 				{
-					if(j==link)//é‡åˆ°è¿å¯¹ï¼Œè·³è¿‡
+					if(shoupai[i]==2)//ÕÒ×î´ó¶Ô×Ó
+						p=i;
+					else if(shoupai[i]==3&&i!=trible)//ÅĞ¶Ï³ıÁË×Ô¼ºÒÔÍâ»¹ÓĞÃ»ÓĞÈıÌõ
+						tri++;
+				}
+				if(p>7||tri>0)
+					return "NULL";
+			}
+			if(link==-1)//Ã»ÓĞÁ¬¶Ô
+			{
+				for(int j=0;j<=12;j++)//Ö±½ÓÕÒÊ£ÏÂµÄ×îĞ¡µÄ¶Ô×Ó£¬ÈôÃ»ÄÜ·µ»Ø£¬ËµÃ÷Ã»ÓĞÄÜ´Õ³ÉºùÂ«µÄÅÆ
+				{
+					if(shoupai[j]==2)//ÕÒµ½¿ÉÒÔ´Õ³ÉºùÂ«µÄÅÆ
+					{
+						Pair=Get_Gourd_Pair(trible,j);
+						if(Pair!="NULL")
+						{
+							if(j>trible)//¶Ô×ÓÅÆÃæ±ÈÈıÌõÅÆÃæ´ó
+								Bottom+="\""+GetATri(trible)+" "+Pair+"\"";
+								else//¶Ô×ÓÅÆÃæ±ÈÈıÌõÅÆÃæĞ¡
+								Bottom+="\""+Pair+" "+GetATri(trible)+"\"";
+								return Bottom;
+						}
+					}
+				}
+				if(dun!="Middle")//²»ÊÇÖĞ¶Õ
+				{
+					for(int j=0;j<=12;j++)//Ö±½ÓÕÒÊ£ÏÂµÄ×îĞ¡µÄ¶Ô×Ó£¬ÈôÃ»ÄÜ·µ»Ø£¬ËµÃ÷Ã»ÓĞÄÜ´Õ³ÉºùÂ«µÄÅÆ
+					{
+						if(shoupai[j]>2&&j!=trible)//ÕÒµ½¿ÉÒÔ´Õ³ÉºùÂ«µÄÅÆ
+						{
+							Pair=Get_Gourd_Pair(trible,j);
+							if(Pair!="NULL")
+							{
+								if(j>trible)//¶Ô×ÓÅÆÃæ±ÈÈıÌõÅÆÃæ´ó
+									Bottom+="\""+GetATri(trible)+" "+Pair+"\"";
+									else//¶Ô×ÓÅÆÃæ±ÈÈıÌõÅÆÃæĞ¡
+									Bottom+="\""+Pair+" "+GetATri(trible)+"\"";
+									return Bottom;
+							}
+						}
+					}
+				}
+			}
+			else//ÓĞÁ¬¶Ô
+			{
+				for(int j=0;j<=12;j++)//¿ªÊ¼ÕÒÊ£ÏÂµÄ×îĞ¡µÄ¶Ô×Ó,ÈôÃ»ÄÜ·µ»Ø£¬ËµÃ÷Ö»ÓĞÁ¬¶Ô£¬Ã»ÓĞÆäËû¶Ô×Ó
+				{
+					if(j==link)//Óöµ½Á¬¶Ô£¬Ìø¹ı
 					{
 						j+=1;
 						continue;
 					}
-					else if(shoupai[j]==2)//ä¸€ä¸ªå¯¹å­ï¼Œä¸å±äºè¿å¯¹ä¸­çš„ä¸€å¯¹ï¼Œå–å‡º
+					else if(shoupai[j]==2)//Ò»¸ö¶Ô×Ó£¬²»ÊôÓÚÁ¬¶ÔÖĞµÄÒ»¶Ô£¬È¡³ö
 					{
-						if(j>trible)//å¯¹å­ç‰Œé¢æ¯”ä¸‰æ¡ç‰Œé¢å¤§
-						Bottom+="\""+GetATri(trible)+" "+GetAPair(j)+"\"";
-						else//å¯¹å­ç‰Œé¢æ¯”ä¸‰æ¡ç‰Œé¢å°
-						Bottom+="\""+GetAPair(j)+" "+GetATri(trible)+"\"";
+						Pair=Get_Gourd_Pair(trible,j);
+						//System.out.println(Pair);
+						if(Pair!="NULL")
+						{
+							if(j>trible)//¶Ô×ÓÅÆÃæ±ÈÈıÌõÅÆÃæ´ó
+								Bottom+="\""+GetATri(trible)+" "+Pair+"\"";
+								else//¶Ô×ÓÅÆÃæ±ÈÈıÌõÅÆÃæĞ¡
+								Bottom+="\""+Pair+" "+GetATri(trible)+"\"";
+								//System.out.println(Arrays.toString(shoupai));
+								return Bottom;
+						}
+					}
+				}
+				//Ö»ÓĞÁ¬¶Ô£¬Ã»ÓĞÆäËû¶Ô×Ó£¬²ğÁ¬¶Ô
+				Pair=Get_Gourd_Pair(trible,link);
+				if(Pair!="NULL")
+				{
+					if(link>trible)//¶Ô×ÓÅÆÃæ±ÈÈıÌõÅÆÃæ´ó
+						Bottom+="\""+GetATri(trible)+" "+Pair+"\"";
+						else//¶Ô×ÓÅÆÃæ±ÈÈıÌõÅÆÃæĞ¡
+						Bottom+="\""+Pair+" "+GetATri(trible)+"\"";
+					return Bottom;
+				}
+				else
+				{
+					Pair=Get_Gourd_Pair(trible,link+1);
+					if(Pair!="NULL")
+					{
+						if(link>trible)//¶Ô×ÓÅÆÃæ±ÈÈıÌõÅÆÃæ´ó
+							Bottom+="\""+GetATri(trible)+" "+Pair+"\"";
+							else//¶Ô×ÓÅÆÃæ±ÈÈıÌõÅÆÃæĞ¡
+							Bottom+="\""+Pair+" "+GetATri(trible)+"\"";
 						return Bottom;
 					}
 				}
-				//åªæœ‰è¿å¯¹ï¼Œæ²¡æœ‰å…¶ä»–å¯¹å­ï¼Œæ‹†è¿å¯¹
-				if(link>trible)//å¯¹å­ç‰Œé¢æ¯”ä¸‰æ¡ç‰Œé¢å¤§
-				Bottom+="\""+GetATri(trible)+" "+GetAPair(link)+"\"";
-				else//å¯¹å­ç‰Œé¢æ¯”ä¸‰æ¡ç‰Œé¢å°
-				Bottom+="\""+GetAPair(link)+" "+GetATri(trible)+"\"";
-				return Bottom;
 			}
 		}
 		return "NULL";
 	}
-	public static String Judge_TH()//åˆ¤æ–­æ•´ä¸ªæ‰‹ç‰Œä¸­æœ‰æ²¡æœ‰åŒèŠ±ï¼Œæœ‰åˆ™å–å‡ºï¼Œæ²¡æœ‰è¿”å›â€œNULLâ€
+	public static String Judge_TH(String dun)//ÅĞ¶ÏÕû¸öÊÖÅÆÖĞÓĞÃ»ÓĞÍ¬»¨£¬ÓĞÔòÈ¡³ö£¬Ã»ÓĞ·µ»Ø¡°NULL¡±
 	{
 		String Bottom="NULL";
 		int i;
@@ -342,46 +680,91 @@ public class CHUPAI {
 			{
 				if(fangkuai[13]>4&&fangkuai[i]>0)
 				{
-					Bottom=TH(fangkuai,"#");
+					Bottom=TH(fangkuai,"#",dun);
+					if(Bottom!="NULL")
 					break;
 				}
-				else if(meihua[13]>4&&meihua[i]>0)
+				if(meihua[13]>4&&meihua[i]>0)
 				{
-					Bottom=TH(meihua,"*");
+					Bottom=TH(meihua,"*",dun);
+					if(Bottom!="NULL")
 					break;
 				}
-				else if(hongtao[13]>4&&hongtao[i]>0)
+				if(hongtao[13]>4&&hongtao[i]>0)
 				{
-					Bottom=TH(hongtao,"&");
+					Bottom=TH(hongtao,"&",dun);
+					if(Bottom!="NULL")
 					break;
 				}
-				else if(heitao[13]>4&&heitao[i]>0)
+				if(heitao[13]>4&&heitao[i]>0)
 				{
-					Bottom=TH(heitao,"$");
+					Bottom=TH(heitao,"$",dun);
+					if(Bottom!="NULL")
 					break;
 				}
 			}
 		}
 		return Bottom;
 	}
-	public static String Judge_Str()//åˆ¤æ–­æ•´ä¸ªæ‰‹ç‰Œä¸­æœ‰æ²¡æœ‰é¡ºå­ï¼Œæœ‰åˆ™å–å‡ºï¼Œæ²¡æœ‰è¿”å›â€œNULLâ€
+	public static String Judge_Str(String dun)//ÅĞ¶ÏÕû¸öÊÖÅÆÖĞÓĞÃ»ÓĞË³×Ó£¬ÓĞÔòÈ¡³ö£¬Ã»ÓĞ·µ»Ø¡°NULL¡±
 	{
 		String Bottom="\"";
+		int CouNT=0,max=-1,pos=-1;
+		for(int i=0;i<13;i++)
+		{
+			if(shoupai[i]>0)//²éÕÒ×î³¤Á¬Ğø´®
+			{
+				CouNT++;
+				if(CouNT>max)
+				{
+					max=CouNT;
+					pos=i;
+				}
+			}
+			else
+				CouNT=0;
+		}
+		if(max<5)//×î´ó³¤¶È<5£¬Ã»ÓĞË³×Ó
+			return "NULL";
 		for(int i=8;i>=0;i--)
 		{
 			if(shoupai[i]>0&&shoupai[i+1]>0&&shoupai[i+2]>0&&shoupai[i+3]>0&&shoupai[i+4]>0)
 			{
+				if(i<=pos)
+				{
+					if(max>5&&(shoupai[i]==2||shoupai[i+1]==2||shoupai[i+2]==2||shoupai[i+3]==2||shoupai[i+4]==2))
+					{//ÄÜÌøµÄ´ó¶Ô×Ó¾¡Á¿Ìø
+						if(i>0)
+							if(shoupai[i-1]==1)//±ÜÃâÆÆ»µÇ°ÃæµÄ¶Ô×Ó
+							{
+								max--;
+								continue;
+							}
+					}
+				}
+				if(dun=="Middle")//ÊÇÖĞ¶Õ
+				{
+					if(max>5&&(shoupai[i]==1||shoupai[i+1]==1||shoupai[i+2]==1||shoupai[i+3]==1||shoupai[i+4]==1))
+					{//ÄÜÌøµÄµ¥ÅÆ¾¡Á¿Ìø
+						if(i>0)
+							if(shoupai[i-1]==1)//±ÜÃâÆÆ»µÇ°ÃæµÄ¶Ô×Ó
+							{
+								max--;
+								continue;
+							}
+					}
+				}
 				Bottom+=GetACard(i)+" ";
 				Bottom+=GetACard(i+1)+" ";
 				Bottom+=GetACard(i+2)+" ";
 				Bottom+=GetACard(i+3)+" ";
-				Bottom+=GetACard(i+4)+"\"";
+				Bottom+=GetACard(i+4)+"\"ST";
 				return Bottom;
 			}
 		}
 		return "NULL";
 	}
-	public static String Judge_Tri()//åˆ¤æ–­æ•´ä¸ªæ‰‹ç‰Œä¸­æœ‰æ²¡æœ‰ä¸‰æ¡ï¼Œæœ‰åˆ™å–å‡ºï¼Œæ²¡æœ‰è¿”å›â€œNULLâ€
+	public static String Judge_Tri()//ÅĞ¶ÏÕû¸öÊÖÅÆÖĞÓĞÃ»ÓĞÈıÌõ£¬ÓĞÔòÈ¡³ö£¬Ã»ÓĞ·µ»Ø¡°NULL¡±
 	{
 		String Bottom="\"";
 		int count=0;
@@ -390,13 +773,13 @@ public class CHUPAI {
 			return "NULL";
 		//System.out.println(trible);
 		int flag=0;
-		for(int i=0;i<=12;i++)//ä¹‹åæ‰¾2å¼ å•ç‰Œ
+		for(int i=0;i<=12;i++)//Ö®ºóÕÒ2ÕÅµ¥ÅÆ
 		{
 			if(shoupai[i]==1)
 			{
 				if(i>trible)
 				{
-					if(flag==0)//æ²¡åŠ ä¸‰æ¡
+					if(flag==0)//Ã»¼ÓÈıÌõ
 					{
 						if(count==1)
 						{
@@ -410,7 +793,7 @@ public class CHUPAI {
 						}
 						flag=1;
 					}
-					else//åŠ äº†ä¸‰æ¡
+					else//¼ÓÁËÈıÌõ
 					{
 						Bottom+=" "+GetACard(i);
 						count++;
@@ -433,145 +816,95 @@ public class CHUPAI {
 		}
 		return Bottom;
 	}
-	public static String Judge_TwoP()//åˆ¤æ–­æ•´ä¸ªæ‰‹ç‰Œä¸­æœ‰æ²¡æœ‰ä¸¤å¯¹ï¼ˆåŒ…æ‹¬è¿å¯¹ï¼‰ï¼Œæœ‰åˆ™å–å‡ºï¼Œæ²¡æœ‰è¿”å›â€œNULLâ€
+	public static String Judge_TwoP(String dun)//ÅĞ¶ÏÕû¸öÊÖÅÆÖĞÓĞÃ»ÓĞÁ½¶Ô£¨°üÀ¨Á¬¶Ô£©£¬ÓĞÔòÈ¡³ö£¬Ã»ÓĞ·µ»Ø¡°NULL¡±
 	{
-		String Bottom="\"";
+		String Bottom="";
 		int link=Link_Double();
-		if(link!=-1)//å­˜åœ¨è¿å¯¹
+		int p1=-1,p2=-1,p3=-1,p4=-1,p5=-1,p6=-1,count=0;
+		for(int i=12;i>=0;i--)//ÕÒ¶Ô×Ó£¬´Ó´óµÄ¿ªÊ¼
 		{
-			Bottom+=GetAPair(link)+" ";
-			Bottom+=GetAPair(link+1);
-			int i;
-			for(i=0;i<=12;i++)//æ‰¾åˆ°è¿å¯¹åï¼Œæ‰¾1å¼ å•ç‰Œ
+			if(shoupai[i]==2)
 			{
-				if(shoupai[i]==1)
-				{
-					if(link+1<i)//è¿å¯¹ä¸­è¾ƒå¤§çš„å¯¹å­ç‰Œé¢æ¯”å•ç‰Œå°ï¼Œå•ç‰ŒåŠ åé¢
-					Bottom+=" "+GetACard(i)+"\"";
-					else//å¦åˆ™åŠ å‰é¢
-					{
-						StringBuffer Str=new StringBuffer(Bottom);
-						Str.insert(1,GetACard(i)+" " );
-						Bottom=Str.toString()+"\"";
-					}
-					break;
-				}
+				count++;
+				if(count==1)
+					p1=i;
+				else if(count==2)
+					p2=i;
+				else if(count==3)
+					p3=i;
+				else if(count==4)
+					p4=i;
+				else if(count==5)
+					p5=i;
+				else if(count==6)
+					p6=i;
 			}
-			if(i==13)//æ²¡æ‰¾åˆ°å•ç‰Œ
+		}
+		if(count<2)//Ã»ÕÒµ½Á½¶Ô
+			return "NULL";
+		if(dun=="Bottom")//ÊÇµ×¶Õ
+		{
+			if(p4==-1)//Ö»ÓĞÁ½¶Ô»òÈı¶Ô£¬Òª·Öµ½Ç°Ò»¶ÕÒ»¶Ô
+				Bottom=Judge_Pair();
+			else//ÓĞËÄ¶Ô»òÎå¶ÔÒÔ¼°Áù¶Ô£¨´ËÊ±ÊÇÌØÊâÅÆĞÍ£©
 			{
-				for(i=0;i<=12;i++)//æ‹†å¯¹å­
+				if(link!=-1)//´æÔÚÁ¬¶Ô
+					Bottom=GetTwoPairs(link+1,link);
+				else//²»´æÔÚÁ¬¶Ô
 				{
-					if(shoupai[i]>0)
-					{
-						if(link+1<i)//è¿å¯¹ä¸­è¾ƒå¤§çš„å¯¹å­ç‰Œé¢æ¯”å•ç‰Œå°ï¼Œå•ç‰ŒåŠ åé¢
-						Bottom+=" "+GetACard(i)+"\"";
-						else//å¦åˆ™åŠ å‰é¢
-						{
-							StringBuffer Str=new StringBuffer(Bottom);
-							Str.insert(1,GetACard(i)+" " );
-							Bottom=Str.toString()+"\"";
-						}
-						break;
-					}
+					if(p5==-1)//ËÄ¶Ô
+						Bottom=GetTwoPairs(p1,p4);
+					else if(p6==-1)//Îå¶Ô
+						Bottom=GetTwoPairs(p1,p5);
+					else//Áù¶Ô
+						Bottom=GetTwoPairs(p1,p6);
 				}
 			}
 		}
-		else//ä¸å­˜åœ¨è¿å¯¹
+		else//ÊÇÖĞ¶Õ
 		{
-			int j,p1=-1,p2=-1;
-			int count=0;
-			for(j=12;j>=0;j--)//æ‰¾å¯¹å­ï¼Œä»æœ€å¤§çš„å¼€å§‹
+			if(p3==-1)//Ö»ÓĞÁ½¶Ô£¬Òª·Öµ½Ç°¶ÕÒ»¶Ô
+				Bottom=Judge_Pair();
+			else//ÓĞÈı¶Ô»òËÄ¶Ô
 			{
-				if(shoupai[j]==2)//æ‰¾åˆ°ä¸€å¯¹ï¼Œcount+1,å…¶ä¸­p1>p2
+				if(link!=-1)//´æÔÚÁ¬¶Ô
+					Bottom=GetTwoPairs(link+1,link);
+				else//²»´æÔÚÁ¬¶Ô
 				{
-					count++;
-					if(count==1)
-						p1=j;
-					else if(count==2)
-					{
-						p2=j;
-						break;
-					}
-				}
-			}
-			if(count<2)//æ²¡æ‰¾åˆ°ä¸¤å¯¹
-				return "NULL";
-			Bottom+=GetAPair(p2)+" ";
-			Bottom+=GetAPair(p1);
-			int i;
-			for(i=0;i<=12;i++)//æ‰¾åˆ°ä¸¤å¯¹åï¼Œæ‰¾1å¼ å•ç‰Œ
-			{
-				if(shoupai[i]==1)
-				{
-					if(p1<i)//è¾ƒå¤§çš„å¯¹å­ç‰Œé¢æ¯”å•ç‰Œç‰Œé¢å°ï¼Œå•ç‰ŒåŠ åé¢
-					Bottom+=" "+GetACard(i)+"\"";
-					else if(p2>i)//è¾ƒå°çš„å¯¹å­ç‰Œé¢æ¯”å•ç‰Œç‰Œé¢å¤§ï¼Œå•ç‰ŒåŠ å‰é¢
-					{
-						StringBuffer Str=new StringBuffer(Bottom);
-						Str.insert(1,GetACard(i)+" " );
-						Bottom=Str.toString()+"\"";
-					}
-					else
-					{
-						StringBuffer Str=new StringBuffer(Bottom);
-						Str.insert(7,GetACard(i)+" " );
-						Bottom=Str.toString()+"\"";
-					}
-					break;
-				}
-			}
-			if(i==13)//æ²¡æ‰¾åˆ°å•ç‰Œ
-			{
-				for(i=0;i<=12;i++)//æ‹†å¯¹å­
-				{
-					if(shoupai[i]>0)
-					{
-						if(p1<i)//è¾ƒå¤§çš„å¯¹å­ç‰Œé¢æ¯”å•ç‰Œç‰Œé¢å°ï¼Œå•ç‰ŒåŠ åé¢
-						Bottom+=" "+GetACard(i)+"\"";
-						else if(p2>i)//è¾ƒå°çš„å¯¹å­ç‰Œé¢æ¯”å•ç‰Œç‰Œé¢å¤§ï¼Œå•ç‰ŒåŠ å‰é¢
-						{
-							StringBuffer Str=new StringBuffer(Bottom);
-							Str.insert(1,GetACard(i)+" " );
-							Bottom=Str.toString()+"\"";
-						}
-						else
-						{
-							StringBuffer Str=new StringBuffer(Bottom);
-							Str.insert(7,GetACard(i)+" " );
-							Bottom=Str.toString()+"\"";
-						}
-						break;
-					}
+					if(p4==-1)//Èı¶Ô
+					Bottom=GetTwoPairs(p2,p3);
+					else//ËÄ¶Ô
+					Bottom=GetTwoPairs(p3,p4);
 				}
 			}
 		}
 		return Bottom;
 	}
-	public static String Judge_Pair()//åˆ¤æ–­æ•´ä¸ªæ‰‹ç‰Œä¸­æœ‰æ²¡æœ‰å¯¹å­ï¼Œæœ‰åˆ™å–å‡ºï¼Œæ²¡æœ‰è¿”å›â€œNULLâ€
+	public static String Judge_Pair()//ÅĞ¶ÏÕû¸öÊÖÅÆÖĞÓĞÃ»ÓĞ¶Ô×Ó£¬ÓĞÔòÈ¡³ö£¬Ã»ÓĞ·µ»Ø¡°NULL¡±
 	{
 		String Bottom="\"";
 		int j;
 		int p=-1,count=0;
-		for(j=12;j>=0;j--)//æ‰¾å¯¹å­ï¼Œä»æœ€å¤§çš„å¼€å§‹
+		for(j=12;j>=0;j--)//ÕÒ¶Ô×Ó£¬´Ó×î´óµÄ¿ªÊ¼
 		{
-			if(shoupai[j]==2)//æ‰¾åˆ°ä¸€å¯¹ï¼Œcount+1
+			if(shoupai[j]==2)//ÕÒµ½Ò»¶Ô£¬count+1
 			{
 				p=j;
 				break;
 			}
 		}
-		if(p==-1)//æ²¡æ‰¾åˆ°å¯¹å­
+		if(p==-1)//Ã»ÕÒµ½¶Ô×Ó
 			return "NULL";
-		else//æ‰¾åˆ°å¯¹å­
+		else//ÕÒµ½¶Ô×Ó
 		{
 			int flag=0;
-			for(int i=0;i<=12;i++)//ä¹‹åæ‰¾3å¼ å•ç‰Œ
+			for(int i=0;i<=12;i++)//Ö®ºóÕÒ3ÕÅµ¥ÅÆ
 			{
 				if(shoupai[i]==1)
 				{
 					if(i>p)
 					{
-						if(flag==0)//æ²¡åŠ å¯¹å­
+						if(flag==0)//Ã»¼Ó¶Ô×Ó
 						{
 							if(count==2)
 							{
@@ -585,7 +918,7 @@ public class CHUPAI {
 							}
 							flag=1;
 						}
-						else//åŠ äº†å¯¹å­
+						else//¼ÓÁË¶Ô×Ó
 						{
 							Bottom+=" "+GetACard(i);
 							count++;
@@ -609,7 +942,7 @@ public class CHUPAI {
 		}
 		return Bottom;
 	}
-	public static String Judge_WuLong()//ä»¥ä¸Šå‡æ²¡æœ‰ï¼Œæ‹¿å‡ºä»å°åˆ°å¤§çš„æ•£ç‰Œ,å¤§çš„ä¼˜å…ˆ
+	public static String Judge_WuLong()//ÒÔÉÏ¾ùÃ»ÓĞ£¬ÄÃ³ö´ÓĞ¡µ½´óµÄÉ¢ÅÆ,´óµÄÓÅÏÈ
 	{
 		StringBuffer str=new StringBuffer();
 		str.insert(0, "\"");
@@ -630,73 +963,92 @@ public class CHUPAI {
 		String Str=str.toString();
 		return Str;
 	}
-	public static String Get_Max()
+	public static String Get_Max(String dun)
 	{
 		String str;
-		//åˆ¤æ–­åŒèŠ±é¡º
+		//ÅĞ¶ÏÍ¬»¨Ë³
 		if((str=Judge_THS())!="NULL")
+		{
+			//System.out.println(Arrays.toString(shoupai));
 			return str;
-		//åˆ¤æ–­ç‚¸å¼¹
+		}
+		//ÅĞ¶ÏÕ¨µ¯
 		if((str=Judge_Bomb())!="NULL")
+		{
+			//System.out.println(Arrays.toString(shoupai));
 			return str;
-		//åˆ¤æ–­è‘«èŠ¦
-		if((str=Judge_Gourd())!="NULL")
+		}
+		//ÅĞ¶ÏºùÂ«
+		if((str=Judge_Gourd(dun))!="NULL")
 		{
 			//System.out.println(Arrays.toString(shoupai));
 			return str;
 		}
 			
-		//åˆ¤æ–­åŒèŠ±
-		if((str=Judge_TH())!="NULL")
+		//ÅĞ¶ÏÍ¬»¨
+		if((str=Judge_TH(dun))!="NULL")
+		{
+			//System.out.println(Arrays.toString(shoupai));
+			str+="TH";
 			return str;
-		//åˆ¤æ–­é¡ºå­
-		if((str=Judge_Str())!="NULL")
+		}
+		//ÅĞ¶ÏË³×Ó
+		if((str=Judge_Str(dun))!="NULL")
+		{
+			//System.out.println(Arrays.toString(shoupai));
 			return str;
-		//åˆ¤æ–­ä¸‰æ¡
+		}
+		//ÅĞ¶ÏÈıÌõ
 		if((str=Judge_Tri())!="NULL")
+		{
+			//System.out.println(Arrays.toString(shoupai));
 			return str;
-		//åˆ¤æ–­ä¸¤å¯¹
-		if((str=Judge_TwoP())!="NULL")
+		}
+		//ÅĞ¶ÏÁ½¶Ô
+		if((str=Judge_TwoP(dun))!="NULL")
+		{
+			//System.out.println(Arrays.toString(shoupai));
 			return str;
-		//åˆ¤æ–­å¯¹å­
+		}
+		//ÅĞ¶Ï¶Ô×Ó
 		if((str=Judge_Pair())!="NULL")
+		{
+			//System.out.println(Arrays.toString(shoupai));
 			return str;
-		//ä»¥ä¸Šå‡æ²¡æœ‰ï¼Œæ‹¿å‡ºæ•£ç‰Œ
+		}
+		//ÒÔÉÏ¾ùÃ»ÓĞ£¬ÄÃ³öÉ¢ÅÆ
 		if((str=Judge_WuLong())!="NULL")
+		{
+			//System.out.println(Arrays.toString(shoupai));
 			return str;
+		}
 		return "NULL";
 	}
 	public String CardPlaying(String str) 
 	{
-		//String str="$A *4 $K &5 $9 &6 #A #2 *2 $2 $10 &8 &7";
+		//String str="*4 #4 $3 *8 *9 *3 &K #8 *J &4 #A #10 *Q";
 		System.out.println(str);
 		String Result ="";
-		String AllCard = str.replace(" ", "");//å»é™¤å…¨éƒ¨ç©ºæ ¼
-		AllCard = AllCard.replace("10", ":");//å°†10æ›¿æ¢æˆ:
-		AllCard = AllCard.replace("J", ";");//å°†Jæ›¿æ¢æˆ;
-		AllCard = AllCard.replace("Q", "<");//å°†Qæ›¿æ¢æˆ<
-		AllCard = AllCard.replace("K", "=");//å°†Kæ›¿æ¢æˆ=
-		AllCard = AllCard.replace("A", ">");//å°†Aæ›¿æ¢æˆ>
 		String Top ="";
 		String Middle ="";
 		String Bottom ="";
-		Trans(AllCard);//ç»Ÿè®¡æ‰‹ç‰Œ
-		//è·å–åº•å¢©
-		Bottom=Get_Max();
-		//è·å–ä¸­å¢©
-		Middle=Get_Max();
-		//å‰©ä¸‹çš„ç‰Œæ‹¿å‡ºæ¥æ”¾åˆ°é¡¶å¢©ä»¥åŠå¯¹ç‚¸å¼¹çš„è¡¥å……
+		Trans(str);//Í³¼ÆÊÖÅÆ
+		//»ñÈ¡µ×¶Õ
+		Bottom=Get_Max("Bottom");
+		//»ñÈ¡ÖĞ¶Õ
+		Middle=Get_Max("Middle");
+		//Ê£ÏÂµÄÅÆÄÃ³öÀ´·Åµ½¶¥¶ÕÒÔ¼°¶ÔÕ¨µ¯µÄ²¹³ä
 		int tri=Trible();
 		int DOUB=-1;
 		Top+="\"";
-		if(tri!=-1)//æœ‰ä¸‰å¼ ç›¸åŒ
+		if(tri!=-1)//ÓĞÈıÕÅÏàÍ¬
 			Top+=GetATri(tri)+"\"";
-		else//æ²¡æœ‰ä¸‰å¼ ç›¸åŒ
+		else//Ã»ÓĞÈıÕÅÏàÍ¬
 		{
 			for(int i=12;i>=0;i--)
-			{//æ‰¾å¯¹å­
+			{//ÕÒ¶Ô×Ó
 				if(shoupai[i]==2)
-				{//æ‰¾åˆ°ä¸€ä¸ªå¯¹å­åé€€å‡ºå¾ªç¯,æ‰¾ä¸åˆ°ä¹Ÿæ— æ‰€è°“
+				{//ÕÒµ½Ò»¸ö¶Ô×ÓºóÍË³öÑ­»·,ÕÒ²»µ½Ò²ÎŞËùÎ½
 					Top+=GetAPair(i);
 					DOUB=i;
 					break;
@@ -704,18 +1056,18 @@ public class CHUPAI {
 			}
 		}
 		int count=0;
-		for(int i=0;i<13;i++)//æ­¤æ—¶å¯èƒ½å‰©ä¸‹ä¸€å¯¹æˆ–è€…3å¼ å…¨å•ç‰Œæˆ–5å¼ å…¨å•ç‰Œ
+		for(int i=0;i<13;i++)//´ËÊ±¿ÉÄÜÊ£ÏÂÒ»¶Ô»òÕß3ÕÅÈ«µ¥ÅÆ»ò5ÕÅÈ«µ¥ÅÆ
 		{
 			if(shoupai[i]>0)
 			{
 				int CNT=shoupai[i];
 				for(int j=0;j<CNT;j+=1)
 				{
-					if(Bottom.length()==12)//åº•å¢©æ˜¯ç‚¸å¼¹ï¼Œä¸”è¿˜æœªè¡¥å…¨
+					if(Bottom.length()==12)//µ×¶ÕÊÇÕ¨µ¯£¬ÇÒ»¹Î´²¹È«
 					{
-						if((char)(i+50)>Bottom.charAt(2))//è¦åŠ çš„å•ç‰Œç‰Œé¢å¤§äºç‚¸å¼¹ï¼Œç›´æ¥åŠ åœ¨åé¢
+						if((char)(i+50)>Bottom.charAt(2))//Òª¼ÓµÄµ¥ÅÆÅÆÃæ´óÓÚÕ¨µ¯£¬Ö±½Ó¼ÓÔÚºóÃæ
 						Bottom+=" "+GetACard(i)+"\"";
-						else//è¦åŠ çš„å•ç‰Œç‰Œé¢å°äºç‚¸å¼¹ï¼ŒåŠ åœ¨å‰é¢
+						else//Òª¼ÓµÄµ¥ÅÆÅÆÃæĞ¡ÓÚÕ¨µ¯£¬¼ÓÔÚÇ°Ãæ
 						{
 							StringBuffer Str=new StringBuffer(Bottom);
 							Str.insert(1,GetACard(i)+" " );
@@ -723,11 +1075,11 @@ public class CHUPAI {
 							Bottom+="\"";
 						}
 					}
-					else if(Middle.length()==12)//ä¸­å¢©æ˜¯ç‚¸å¼¹ï¼Œä¸”è¿˜æœªè¡¥å…¨
+					else if(Middle.length()==12)//ÖĞ¶ÕÊÇÕ¨µ¯£¬ÇÒ»¹Î´²¹È«
 					{
-						if((char)(i+50)>Middle.charAt(2))//è¦åŠ çš„å•ç‰Œç‰Œé¢å¤§äºç‚¸å¼¹ï¼Œç›´æ¥åŠ åœ¨åé¢
+						if((char)(i+50)>Middle.charAt(2))//Òª¼ÓµÄµ¥ÅÆÅÆÃæ´óÓÚÕ¨µ¯£¬Ö±½Ó¼ÓÔÚºóÃæ
 						Middle+=" "+GetACard(i)+"\"";
-						else//è¦åŠ çš„å•ç‰Œç‰Œé¢å°äºç‚¸å¼¹ï¼ŒåŠ åœ¨å‰é¢
+						else//Òª¼ÓµÄµ¥ÅÆÅÆÃæĞ¡ÓÚÕ¨µ¯£¬¼ÓÔÚÇ°Ãæ
 						{
 							StringBuffer Str=new StringBuffer(Middle);
 							Str.insert(1,GetACard(i)+" " );
@@ -735,7 +1087,7 @@ public class CHUPAI {
 							Middle+="\"";
 						}
 					}
-					else if(DOUB!=-1)//ä¸­å¢©åº•å¢©ä¿±å…¨ï¼Œæœ‰å¯¹å­
+					else if(DOUB!=-1)//ÖĞ¶Õµ×¶Õ¾ãÈ«£¬ÓĞ¶Ô×Ó
 					{
 						if(i>DOUB)
 						Top+=" "+GetACard(i)+"\"";
@@ -748,11 +1100,11 @@ public class CHUPAI {
 							break;
 						}
 					}
-					else//ä¸­å¢©åº•å¢©ä¿±å…¨ï¼Œæ— å¯¹å­
+					else//ÖĞ¶Õµ×¶Õ¾ãÈ«£¬ÎŞ¶Ô×Ó
 					{
 						Top+=GetACard(i);
 						count++;
-						if(count<3)//é¡¶å¢©ä¸å­˜åœ¨å¯¹å­
+						if(count<3)//¶¥¶Õ²»´æÔÚ¶Ô×Ó
 							Top+=" ";
 						else
 						{
@@ -763,16 +1115,69 @@ public class CHUPAI {
 				}
 			}
 		}
+		if(Bottom.length()>16&&Middle.length()>16)//Á½¶Õ³öÏÖË³×Ó+Ë³×Ó/Í¬»¨+Í¬»¨/Í¬»¨+Ë³×ÓµÄÇé¿ö,¿ÉÄÜ»á·´Ë®
+		{
+			int[] a=new int[5];
+			int[] b=new int[5];
+			int cnt=0;
+			if(Bottom.charAt(16)<Middle.charAt(16))//¸ù¾İ±êÖ¾×Ö·û´®ÅĞ¶Ï,×ÖµäĞòTÔÚSºóÃæ£¬¹ÊTH>ST
+			{
+				String temp=Middle;
+				Middle=Bottom;
+				Bottom=temp;
+			}
+			else
+			{
+				Bottom=Bottom.replaceAll("TH", "");
+				Bottom=Bottom.replaceAll("ST", "");
+				Middle=Middle.replaceAll("TH", "");
+				Middle=Middle.replaceAll("ST", "");
+				Bottom=Bottom.replaceAll("\"", "");
+				Middle=Middle.replaceAll("\"", "");
+				Trans(Bottom);
+				for(int i=12;i>=0;i--)
+					if(shoupai[i]>0)
+					{
+						a[cnt++]=i;
+						shoupai[i]=0;
+						if(cnt==5)
+							break;
+					}
+				Trans(Middle);
+				for(int i=12;i>=0;i--)
+					if(shoupai[i]>0)
+					{
+						b[cnt++]=i;
+						if(cnt==5)
+							break;
+					}
+				//Êı×éa´æBottomµÄÅÆÃæÖµ£¬b´æMiddleµÄÅÆÃæÖµ
+				for(int i=0;i<5;i++)
+					if(b[i]>a[i])
+					{
+						String temp=Middle;
+						Middle=Bottom;
+						Bottom=temp;
+						break;
+					}
+					else if(a[i]>b[i])
+						break;
+			}
+		}
 		Top=Top.replaceAll(":", "10");
 		Top=Top.replaceAll(";", "J");
 		Top=Top.replaceAll("<", "Q");
 		Top=Top.replaceAll("=", "K");
 		Top=Top.replaceAll(">", "A");
+		Bottom=Bottom.replaceAll("TH", "");
+		Bottom=Bottom.replaceAll("ST", "");
 		Bottom=Bottom.replaceAll(":", "10");
 		Bottom=Bottom.replaceAll(";", "J");
 		Bottom=Bottom.replaceAll("<", "Q");
 		Bottom=Bottom.replaceAll("=", "K");
 		Bottom=Bottom.replaceAll(">", "A");
+		Middle=Middle.replaceAll("TH", "");
+		Middle=Middle.replaceAll("ST", "");
 		Middle=Middle.replaceAll(":", "10");
 		Middle=Middle.replaceAll(";", "J");
 		Middle=Middle.replaceAll("<", "Q");

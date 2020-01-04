@@ -17,7 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ZHUNBEI {
-	JFrame jf = new JFrame("鍑嗗");
+	JFrame jf = new JFrame("准备");
 	int zhanju_id = 0;
 	void Zhunbei(String tok, String na) {
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,13 +40,13 @@ public class ZHUNBEI {
 		jp5.setBounds(520, 160, 100, 35);
 		jp5.setOpaque(true);
 		jl.setBounds(0, 0, 1133, 640);
-		Icon icon = new ImageIcon("images/鍑嗗鑳屾櫙.jpg");
-		Icon fanhui = new ImageIcon("icon/杩斿洖.jpg");
-		Icon zhunbei = new ImageIcon("icon/鍑嗗.jpg");
+		Icon icon = new ImageIcon("images/准备背景.jpg");
+		Icon fanhui = new ImageIcon("icon/返回.jpg");
+		Icon zhunbei = new ImageIcon("icon/准备.jpg");
 		jl.setIcon(icon);
 		JButton jb1 = new JButton();
 		JButton jb2 = new JButton();
-		JButton jb3 = new JButton("鍗冭繛鏉�");
+		JButton jb3 = new JButton("千连杀");
 		jb1.setIcon(fanhui);
 		jb1.setBounds(0, 0, 106, 59);
 		jb2.setIcon(zhunbei);
@@ -74,19 +74,19 @@ public class ZHUNBEI {
 					HttpPost pos = new HttpPost();
 	        		JSONObject jsonb = new JSONObject(pos.Post("http://api.revth.com/game/open", "", 1, tok));
 	        		if(jsonb.getInt("status")!=0) {
-	        			JFrame Error = new JFrame("閿欒");
+	        			JFrame Error = new JFrame("错误");
 	        			Error.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        			Error.setSize(225,130);
 	        			Error.setLocation(800, 440);
 	        			JPanel JP = new JPanel();
 	        			JP.setBounds(22, 22, 181, 108);
 	        			JP.setOpaque(true);
-	        			JTextField xinxi = new JTextField("鍔犲叆鎴樺眬澶辫触");
+	        			JTextField xinxi = new JTextField("加入战局失败");
 	        			xinxi.setBounds(22, 22, 181, 50);
 	        			xinxi.setEnabled(false);
 	        			Font x = new Font("Serif",0,20);
 	        			xinxi.setFont(x);
-	        			JButton quedin = new JButton("纭畾");
+	        			JButton quedin = new JButton("确定");
 	        			quedin.setBounds(62, 84, 100, 34);
 	        			quedin.addActionListener(new ActionListener() {
 	        				public void actionPerformed(ActionEvent g) {

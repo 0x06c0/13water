@@ -23,7 +23,7 @@ public class QIANLIANSHA {
 				try 
 	        	{
 					int i=0;
-					for(;i<200;i++) {
+					for(;i<100;i++) {
 					HttpPost pos = new HttpPost();
 	        		JSONObject jsonb1 = new JSONObject(pos.Post("http://api.revth.com/game/open", "", 1, tok));
 					CHUPAI cp = new CHUPAI();
@@ -31,21 +31,23 @@ public class QIANLIANSHA {
 					String RESULT = "{\"id\": "+ jsonb1.getJSONObject("data").getInt("id") +",\"card\": ["+ result + "]}";
 	        		HttpPost HP = new HttpPost();
 	        		JSONObject jsonb = new JSONObject(HP.Post("http://api.revth.com/game/submit", RESULT, 2, tok));
-	        		if(jsonb.getInt("status")!=0) {
-	        			JFrame Error = new JFrame("é”™è¯¯");
-	        			JFrame jf = new JFrame("å‡ºç‰Œ");
+	        		if(jsonb.getInt("status")!=0) 
+	        		{
+	        			JFrame Error = new JFrame("´íÎó");
+	        			System.out.println(jsonb.getInt("status"));
+	        			JFrame jf = new JFrame("³öÅÆ");
 	        			Error.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        			Error.setSize(225,130);
 	        			Error.setLocation(800, 440);
 	        			JPanel JP = new JPanel();
 	        			JP.setBounds(22, 22, 181, 108);
 	        			JP.setOpaque(true);
-	        			JTextField xinxi = new JTextField("å‡ºç‰Œå¤±è´¥è¯·æ£€æŸ¥");
+	        			JTextField xinxi = new JTextField("´íÎóÂë:"+jsonb.getInt("status"));
 	        			xinxi.setBounds(22, 22, 181, 50);
 	        			xinxi.setEnabled(false);
 	        			Font x = new Font("Serif",0,20);
 	        			xinxi.setFont(x);
-	        			JButton quedin = new JButton("ç¡®å®š");
+	        			JButton quedin = new JButton("È·¶¨");
 	        			quedin.setBounds(62, 84, 100, 34);
 	        			jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        			jf.setSize(1133,640);
@@ -64,8 +66,8 @@ public class QIANLIANSHA {
 	        		    jp6.setBounds(416, 188, 300, 182);
 	        		    jp6.setOpaque(true);
 	        			jl.setBounds(0, 0, 1133, 640);
-	        			Icon icon = new ImageIcon("images/åƒè¿žæ€.jpg");
-	        			Icon fanhui = new ImageIcon("icon/è¿”å›ž.jpg");
+	        			Icon icon = new ImageIcon("images/Ç§Á¬É±.jpg");
+	        			Icon fanhui = new ImageIcon("icon/·µ»Ø.jpg");
 	        			jl.setIcon(icon);
 	        			JButton jb1 = new JButton();
 	        			jb1.setIcon(fanhui);
@@ -84,7 +86,7 @@ public class QIANLIANSHA {
 	        		        		pai=strBuilder.toString();
 	        		        	}
 	        		        	JLabel jpai = new JLabel();
-	        		        	Icon iconpai = new ImageIcon("æ‰‘å…‹ç‰Œå›¾ç‰‡/"+pai+".JPG");
+	        		        	Icon iconpai = new ImageIcon("ÆË¿ËÅÆÍ¼Æ¬/"+pai+".JPG");
 	        		        	if(count<3) {
 	        		        		jpai.setBounds(60*count, 0, 60, 91);
 	        		        		jpai.setIcon(iconpai);
@@ -131,21 +133,22 @@ public class QIANLIANSHA {
 	        			Error.add(JP);
 	        			Error.setVisible(true);
 	        			break;
-	        		}}
-	        		if(i==200) {
-	        			JFrame Error = new JFrame("æˆåŠŸ");
+	        		}
+	        		}
+	        		if(i==100) {
+	        			JFrame Error = new JFrame("³É¹¦");
 	        			Error.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        			Error.setSize(225,130);
 	        			Error.setLocation(800, 440);
 	        			JPanel JP = new JPanel();
 	        			JP.setBounds(22, 22, 181, 108);
 	        			JP.setOpaque(true);
-	        			JTextField xinxi = new JTextField("å‡ºç‰ŒæˆåŠŸï¼ï¼ï¼");
+	        			JTextField xinxi = new JTextField("³öÅÆ³É¹¦£¡£¡£¡");
 	        			xinxi.setBounds(22, 22, 181, 50);
 	        			xinxi.setEnabled(false);
 	        			Font x = new Font("Serif",0,20);
 	        			xinxi.setFont(x);
-	        			JButton quedin = new JButton("ç¡®å®š");
+	        			JButton quedin = new JButton("È·¶¨");
 	        			quedin.setBounds(62, 84, 100, 34);
 	        			quedin.addActionListener(new ActionListener() {
 	        				public void actionPerformed(ActionEvent g) {
